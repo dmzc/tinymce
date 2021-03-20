@@ -1,5 +1,5 @@
 import { FieldSchema, ValueSchema } from '@ephox/boulder';
-import { Result } from '@ephox/katamari';
+import { Cell, Optional, Result } from '@ephox/katamari';
 import { ContextBar, contextBarFields, ContextBarSpec } from './ContextBar';
 
 export interface ContextToolbarSpec extends ContextBarSpec {
@@ -14,7 +14,8 @@ export interface ContextToolbar extends ContextBar {
 
 const contextToolbarSchema = ValueSchema.objOf([
   FieldSchema.defaulted('type', 'contexttoolbar'),
-  FieldSchema.strictString('items')
+  FieldSchema.strictString('items'),
+  FieldSchema.state('activeGroup', () => Cell(Optional.none()))
 ].concat(contextBarFields));
 
 export const createContextToolbar = (spec: ContextToolbarSpec): Result<ContextToolbar, ValueSchema.SchemaError<any>> =>

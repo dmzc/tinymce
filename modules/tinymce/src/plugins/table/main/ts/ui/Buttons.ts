@@ -164,7 +164,6 @@ const addButtons = (editor: Editor, selectionTargets: SelectionTargets, clipboar
     onAction: cmd('mceInsertTable'),
     icon: 'table'
   });
-
 };
 
 const addToolbars = (editor: Editor) => {
@@ -175,6 +174,59 @@ const addToolbars = (editor: Editor) => {
     editor.ui.registry.addContextToolbar('table', {
       predicate: isTable,
       items: toolbar,
+      scope: 'node',
+      position: 'node'
+    });
+
+    // editor.ui.registry.addButton('tablecell', {
+    //   tooltip: 'Table Cell',
+    //   icon: 'table-cell',
+    //   onAction: () => {
+    //     editor.fire('contexttoolbar-show', {
+    //       toolbarKey: 'quicktablecell'
+    //     });
+    //   },
+    // });
+
+    // editor.ui.registry.addContextToolbar('quicktablecell', {
+    //   items: 'tablemergecells tablesplitcells | tablecellprops', // TODO: Add new buttons
+    //   predicate: isTable, // Could be used to disable the button?
+    //   scope: 'node',
+    //   position: 'node'
+    // });
+    // editor.ui.registry.addContextToolbar('quicktablerow', {
+    //   items: 'tableinsertrowbefore tableinsertrowafter | advtablesort tablecopyrow | tablerowprops tabledeleterow', // TODO: Add new buttons
+    //   predicate: isTable,
+    //   scope: 'node',
+    //   position: 'node'
+    // });
+    // editor.ui.registry.addContextToolbar('quicktablecol', {
+    //   items: 'tableinsertcolbefore tableinsertcolafter | advtablesort tablecopycol | tablecolprops tabledeletecol', // TODO: Add new buttons
+    //   predicate: isTable,
+    //   scope: 'node',
+    //   position: 'node'
+    // });
+
+    editor.ui.registry.addContextToolbarGroup('quicktablecell', {
+      items: 'tablecellbackground tablecellbordercolor tablecellborderwidth tablecellvalign | tablemergecells tablesplitcells | tablecellprops', // TODO: Add new buttons
+      icon: 'table-cell',
+      predicate: isTable, // Could be used to disable the button?
+      scope: 'node',
+      position: 'node'
+    });
+
+    editor.ui.registry.addContextToolbarGroup('quicktablerow', {
+      items: 'tableinsertrowbefore tableinsertrowafter | advtablesort | tablerowprops tabledeleterow', // TODO: Add copy/paste row
+      icon: 'table-row',
+      predicate: isTable,
+      scope: 'node',
+      position: 'node'
+    });
+
+    editor.ui.registry.addContextToolbarGroup('quicktablecol', {
+      items: 'tableinsertcolbefore tableinsertcolafter | advtablesort | tablecolprops tabledeletecol', // TODO: Add copy/paste col
+      icon: 'table-column',
+      predicate: isTable,
       scope: 'node',
       position: 'node'
     });
