@@ -241,7 +241,7 @@ const addButtons = (editor: Editor, selectionTargets: SelectionTargets, clipboar
   ];
 
   editor.ui.registry.addMenuButton('tablecellvalign', {
-    icon: 'table-cell-valign',
+    icon: 'vertical-align',
     fetch: (callback) => {
       callback(Arr.map(alignTableButtons, (item): Menu.ToggleMenuItemSpec => {
         return {
@@ -264,12 +264,12 @@ const addButtons = (editor: Editor, selectionTargets: SelectionTargets, clipboar
     onAction: () => {
       editor.execCommand('mceTableToggleCaption', false, true);
     },
-    icon: 'table-caption-toggle'
+    icon: 'table-caption'
   });
 
   const tableCellBackgroundColors = getTableCellBackgroundColors(editor);
   editor.ui.registry.addMenuButton('tablecellbackground', {
-    icon: 'table-cell-background-color',
+    icon: 'cell-background-color',
     tooltip: 'Table Cell Background Color',
     fetch: (callback) => {
       callback([
@@ -291,7 +291,7 @@ const addButtons = (editor: Editor, selectionTargets: SelectionTargets, clipboar
 
   const tableCellBorderColors = getTableCellBorderColors(editor);
   editor.ui.registry.addMenuButton('tablecellbordercolor', {
-    icon: 'table-cell-border-color',
+    icon: 'cell-border-color',
     tooltip: 'Table Cell Border Color',
     fetch: (callback) => {
       callback([
